@@ -63,5 +63,49 @@ namespace Euler
 
             return n;
         }
+
+        public static long GetLargestPalindromeProduct(long digitNumber=2)
+        {
+            long largestPalindrome = 0;
+            int min = 1;
+            int max=10;
+            for(int i = 1; i <= digitNumber; i++)
+            {
+                min =Convert.ToInt32(min.ToString() + "0");
+                max = Convert.ToInt32(max.ToString() + "0");
+            }
+            var mult1 = 0;
+            var mult2 = 0;
+            for (int i = min; i < max; i++)
+            {
+                for (int j = min; j < max; j++)
+                {
+                    int product = i * j;
+                    if(IsPalindrome(product) && product> largestPalindrome)
+                    {
+                        largestPalindrome = product;
+                        mult1 =i ; mult2 =j;
+                    }
+                }
+
+
+            }
+
+            return largestPalindrome;
+        }
+        public static bool IsPalindrome(int number)
+        {
+            string num = number.ToString();
+            char[] numArray = num.ToCharArray();
+            string reversedNumber = "";
+
+            for(int i= numArray.Length-1; i>=0; i--)
+            {
+                reversedNumber += numArray[i].ToString();
+            }
+
+            return reversedNumber == num;
+
+        }
     }
 }
