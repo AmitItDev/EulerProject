@@ -107,5 +107,30 @@ namespace Euler
             return reversedNumber == num;
 
         }
+
+        public static long SmallestMultiple(int from=1, int to=20)
+        {
+            int lcm = 1;
+            for (int i = 2; i <= to; i++)
+            {
+                lcm = LCM(lcm, i);
+            }
+            return lcm;
+        }
+        static int LCM(int a, int b)
+        {
+            return (a / GCD(a, b)) * b;
+        }
+        static int GCD(int a, int b)
+        {
+            while (b != 0)
+            {
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
     }
 }
