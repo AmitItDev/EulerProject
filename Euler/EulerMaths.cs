@@ -13,13 +13,13 @@ namespace Euler
     /// </summary>
     public static class EulerMaths
     {
-        public static int GetSumOfMultipleOfThreeOrFive(int upperLimit= 1000)
+        public static int GetSumOfMultipleOfThreeOrFive(int upperLimit = 1000)
         {
             int sum = 0;
 
-            for(int i = 0; i<upperLimit; i++)
+            for (int i = 0; i < upperLimit; i++)
             {
-                if(i % 3 == 0 || i % 5 == 0)
+                if (i % 3 == 0 || i % 5 == 0)
                 {
                     sum += i;
                 }
@@ -51,7 +51,7 @@ namespace Euler
             return sum;
         }
 
-        public static long GetLargestPrimeFactor(long n= 600851475143)
+        public static long GetLargestPrimeFactor(long n = 600851475143)
         {
             for (long i = 2; i < n; i++)
             {
@@ -64,14 +64,14 @@ namespace Euler
             return n;
         }
 
-        public static long GetLargestPalindromeProduct(long digitNumber=2)
+        public static long GetLargestPalindromeProduct(long digitNumber = 2)
         {
             long largestPalindrome = 0;
             int min = 1;
-            int max=10;
-            for(int i = 1; i <= digitNumber; i++)
+            int max = 10;
+            for (int i = 1; i <= digitNumber; i++)
             {
-                min =Convert.ToInt32(min.ToString() + "0");
+                min = Convert.ToInt32(min.ToString() + "0");
                 max = Convert.ToInt32(max.ToString() + "0");
             }
             var mult1 = 0;
@@ -81,10 +81,10 @@ namespace Euler
                 for (int j = min; j < max; j++)
                 {
                     int product = i * j;
-                    if(IsPalindrome(product) && product> largestPalindrome)
+                    if (IsPalindrome(product) && product > largestPalindrome)
                     {
                         largestPalindrome = product;
-                        mult1 =i ; mult2 =j;
+                        mult1 = i; mult2 = j;
                     }
                 }
 
@@ -99,7 +99,7 @@ namespace Euler
             char[] numArray = num.ToCharArray();
             string reversedNumber = "";
 
-            for(int i= numArray.Length-1; i>=0; i--)
+            for (int i = numArray.Length - 1; i >= 0; i--)
             {
                 reversedNumber += numArray[i].ToString();
             }
@@ -108,7 +108,7 @@ namespace Euler
 
         }
 
-        public static long SmallestMultiple(int from=1, int to=20)
+        public static long SmallestMultiple(int from = 1, int to = 20)
         {
             int lcm = 1;
             for (int i = 2; i <= to; i++)
@@ -132,5 +132,66 @@ namespace Euler
             return a;
         }
 
+        public static long SumSquareDifference(int n = 100)
+        {
+            // Calculate the sum of the squares
+            long sumOfSquares = SumOfSquares(n);
+
+            // Calculate the square of the sum
+            long squareOfSum = SquareOfSum(n);
+
+            // Calculate the difference
+            return squareOfSum - sumOfSquares;
+        }
+
+        static long SumOfSquares(int n)
+        {
+            return n * (n + 1) * (2 * n + 1) / 6;
+        }
+
+        static long SquareOfSum(int n)
+        {
+            long sum = n * (n + 1) / 2;
+            return sum * sum;
+        }
+
+        public static long FindNthPrime(int n = 10001)
+        {
+            if (n == 1)
+                return 2;
+
+            int count = 1;
+            int number = 3;
+
+            while (count < n)
+            {
+                if (IsPrime(number))
+                {
+                    count++;
+                }
+
+                number += 2;
+            }
+
+            return number - 2;
+        }
+        static bool IsPrime(int number)
+        {
+            if (number <= 1)
+                return false;
+            if (number <= 3)
+                return true;
+
+            if (number % 2 == 0 || number % 3 == 0)
+                return false;
+
+            for (int i = 5; i * i <= number; i += 6)
+            {
+                if (number % i == 0 || number % (i + 2) == 0)
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

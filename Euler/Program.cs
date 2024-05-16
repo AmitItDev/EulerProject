@@ -11,6 +11,8 @@ namespace Euler
             Console.WriteLine("The largest prime factor of 600851475143 is: " + EulerMaths.GetLargestPrimeFactor());
             Console.WriteLine("The Largest Palindrome Product for 2 digit is: " + EulerMaths.GetLargestPalindromeProduct());
             Console.WriteLine("Smallest positive number that is evenly divisible by all of the numbers from 1 to 20 is: " + EulerMaths.SmallestMultiple());
+            Console.WriteLine("Difference between the sum of the squares of the first 100 natural numbers and the square of the sum is: " + EulerMaths.SumSquareDifference());
+            Console.WriteLine("10001st prime number is: " + EulerMaths.FindNthPrime());
         }
     }
 }
